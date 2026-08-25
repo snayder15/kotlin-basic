@@ -1,14 +1,19 @@
 import java.time.LocalDate
+import java.time.Period
+import kotlin.system.exitProcess
 
 fun main() {
-    println("Please enter a date with the format <yyyy-MM-dd>")
-    val readLine: String? = null
-//    val input = LocalDate.parse(readLine) //TODO: Rompe en el metodo LocalDate.parse
-//    val input = LocalDate.parse(readLine ?: "2026-09-26") //TODO: Usamos el operador elvis operator para devolver un valor por defecto, cuando readline es null
-//    val input = LocalDate.parse(readLine!!) //TODO: Rompe en el metodo main
-    readLine?.let{
-        val input = LocalDate.parse(readLine)
-        println("Your wrote $input ${input.dayOfWeek}")
+    println("Please enter your birthday with the format <yyyy-MM-dd>")
+    val line = supportNullableString(readLine())
+    if(line.isNullOrEmpty()) {
+        println("data is not valid")
+        exitProcess(1)
     }
-//    println("Your wrote $input ${input.dayOfWeek}")
+    val input = LocalDate.parse(line)
+    println("You wrote $input")
+    val currentDate = LocalDate.now()
+    val difference = Period.between(input, currentDate)
+    println("The difference between the date you wrote and today is ${difference.years}")
 }
+
+fun supportNullableString(line: String?) = line
