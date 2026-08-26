@@ -1,11 +1,17 @@
+package com.codely.demo
+
 import java.time.LocalDate
 import java.time.Period
 import kotlin.system.exitProcess
 
+class Codelyber {
+    fun greet() = "Welcome to kotlin skeleton!!!"
+}
+
 fun main() {
     println("Please enter your birthday with the format <yyyy-MM-dd>")
     val line = supportNullableString(readLine())
-    if(line.isNullOrEmpty()) {
+    if (line.isNullOrEmpty()) {
         println("data is not valid")
         exitProcess(1)
     }
