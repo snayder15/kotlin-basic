@@ -24,15 +24,17 @@ fun main() {
         }
     }?.also {
         println("You wrote $it")
-    }.run {
-        with(Period.between(this, LocalDate.now())) {
-            when {
-                years > 0 -> println("The difference between the date you wrote and year is ${years}")
-                months > 0 -> println("The difference between the date you wrote and months is ${months}")
-                days > 0 -> println("The difference between the date you wrote and day is ${days}")
-            }
-        }
+    }?.run {
+        this.calculateDifference()
     }
 }
 
 fun supportNullableString(line: String?) = line
+
+fun LocalDate.calculateDifference() = with(Period.between(this, LocalDate.now())) {
+    when {
+        years > 0 -> println("The difference between the date you wrote and year is ${years}")
+        months > 0 -> println("The difference between the date you wrote and months is ${months}")
+        days > 0 -> println("The difference between the date you wrote and day is ${days}")
+    }
+}
